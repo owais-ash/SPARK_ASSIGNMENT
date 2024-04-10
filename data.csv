@@ -1,4 +1,4 @@
-Country,Cases,Deaths,Recovered,Active_Cases,Critical)Cases
+Country,Cases,Deaths,Recovered,Active_Cases,Critical_Cases
 India,45034136,533547,0,44500589,0
 USA,111765841,1218840,109701168,845833,1080
 China,503302,5272,379053,118977,0
