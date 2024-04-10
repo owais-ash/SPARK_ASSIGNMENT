@@ -17,7 +17,8 @@ minimum_covid_cases = covidDF.select("Country", (covidDF.Deaths).alias("Total De
 total_cases = covidDF.agg({"Cases": "sum"})
 most_efficient_country = covidDF.select("Country", (covidDF.Recovered / covidDF.Cases).alias("Recovery Rate")).orderBy("Recovery Rate", ascending=False).limit(1)
 least_efficient_country = covidDF.select("Country", (covidDF.Recovered / covidDF.Cases).alias("Recovery Rate")).orderBy("Recovery Rate", ascending=True).limit(1)
-
+least_critical_cases = covidDF.select("Country", (covidDF.Critical_Cases).alias("Critical Cases")).orderBy("Critical Cases", ascending=True).limit(1)
+highest_critical_cases = covidDF.select("Country", (covidDF.Critical_Cases).alias("Critical Cases")).orderBy("Critical Cases", ascending=False).limit(1)
 
 
 def dataframe_to_table(dataframe):
@@ -64,11 +65,11 @@ def get_data7():
 
 @app.route('/api/least_suffering', methods=['GET'])
 def get_data8():
-    return dataframe_to_table(covidDF)
+    return dataframe_to_table(least_critical_cases)
 
 @app.route('/api/still_suffering', methods=['GET'])
 def get_data9():
-    return dataframe_to_table(covidDF)
+    return dataframe_to_table(highest_critical_cases)
 
 
 @app.route('/')
