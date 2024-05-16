@@ -1,14 +1,20 @@
-
 from flask import Flask, jsonify, render_template
-import pandas as pd
-import json
+import pygwalker as pyg
+from pyspark.sql import SparkSession
+import yaml
 
 app = Flask(__name__)
 
-import pyspark
-from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.master("local[*]").getOrCreate()
+with open('config.yaml', 'r') as file:
+    config = yaml.safe_load(file)
+
+# Setup Spark session
+spark = SparkSession.builder \
+    .appName(config['spark']['app_name']) \
+    .master(config['spark']['master']) \
+    .getOrCreate()
+
 covidDF = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("data.csv")
 column_order = ['Country','Cases','Deaths','Recovered','Active_Cases','Critical_Cases'] 
 most_affected_country = covidDF.select("Country", (covidDF.Deaths / covidDF.Cases).alias("Death Rate")).orderBy("Death Rate", ascending=False).limit(1)
@@ -73,9 +79,12 @@ def get_data9():
     return dataframe_to_table(highest_critical_cases)
 
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
