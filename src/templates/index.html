@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Data Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Spark Assignment - COVID-19 Data Dashboard</h1>
+    </div>
+    <div class="container">
+        <p>Welcome to the COVID-19 Data Dashboard. Please select an option below:</p>
+        <p>Click <a href="/api/data" style="color: #007bff; text-decoration: none;">here</a> to access the COVID-19 API's Data.</p>
+        <div class="button-container">
+            <button class="button" onclick="window.location.href='/api/most_affected'">Most Affected Country</button>
+            <button class="button" onclick="window.location.href='/api/least_affected'">Least Affected Country</button>
+            <button class="button" onclick="window.location.href='/api/highest_cases'">Country with Highest Cases</button>
+            <button class="button" onclick="window.location.href='/api/lowest_cases'">Country with Lowest Cases</button>
+            <button class="button" onclick="window.location.href='/api/total_cases'">Total Number of Cases</button>
+            <button class="button" onclick="window.location.href='/api/most_efficient'">Most Efficient Recovery</button>
+            <button class="button" onclick="window.location.href='/api/least_efficient'">Least Efficient Recovery</button>
+            <button class="button" onclick="window.location.href='/api/least_suffering'">Least Suffering Country</button>
+            <button class="button" onclick="window.location.href='/api/still_suffering'">Countries Still Suffering</button>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; Owais TAS205</p>
+    </div>
+</body>
+</html>
