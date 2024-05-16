@@ -20,7 +20,7 @@ with open(data, 'w', newline='') as file:
     writer = csv.writer(file)
 
     # Write header row
-    writer.writerow(['Country', 'Cases', 'Deaths', 'Recovered', 'Active_Cases', 'Critical)Cases'])
+    writer.writerow(['Country', 'Cases', 'Deaths', 'Recovered', 'Active_Cases', 'Critical_Cases'])
 
     # Iterate over countries and fetch data
     for country in countries:
