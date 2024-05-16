@@ -10,13 +10,13 @@ with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file)
 
 # Setup Spark session
-spark = SparkSession.builder \
-    .appName(config['spark']['app_name']) \
-    .master(config['spark']['master']) \
-    .getOrCreate()
+spark = SparkSession.builder.appName(config['spark']['app_name']).master(config['spark']['master']).getOrCreate()
 
 covidDF = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("data.csv")
+
 column_order = ['Country','Cases','Deaths','Recovered','Active_Cases','Critical_Cases'] 
+
+#dataframes based on quries to be performed 
 most_affected_country = covidDF.select("Country", (covidDF.Deaths / covidDF.Cases).alias("Death Rate")).orderBy("Death Rate", ascending=False).limit(1)
 least_affected_country = covidDF.select("Country", (covidDF.Deaths / covidDF.Cases).alias("Death Rate")).orderBy("Death Rate", descending=False).limit(1)
 highest_covid_cases = covidDF.select("Country", (covidDF.Deaths).alias("Total Deaths")).orderBy("Total Deaths", ascending=False).limit(1)
