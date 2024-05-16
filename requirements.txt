@@ -1,0 +1,4 @@
+python==3.11 or above
+Flask==1.1.2
+pandas==1.1.5
+pyspark==3.1.2
